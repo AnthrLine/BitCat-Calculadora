@@ -27,8 +27,8 @@ body {
 }
 
 .presetscorebutton{
-    width: 12vh;
-    height: 12vh;
+    width: 8vh;
+    height: 8vh;
 
     background-color: aqua;
 
@@ -42,14 +42,14 @@ body {
     justify-content: center;
     text-align: center;
 
-    font-size: 5vh;
+    font-size: 4vh;
     margin: 1vh;
 
 }
 
 .presetscorebuttonop{
-    width: 12vh;
-    height: 12vh;
+    width: 8vh;
+    height: 8vh;
 
     background-color:cadetblue;
 
@@ -63,7 +63,7 @@ body {
     justify-content: center;
     text-align: center;
 
-    font-size: 5vh;
+    font-size: 4vh;
     margin: 1vh;
 
 }
