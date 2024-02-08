@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+
+    font-family: 'Lato'
+}
+
+#twocoldivider {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 97vw;
+}
+
+.col{
+    width: 48vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.presetscorebutton{
+    width: 12vh;
+    height: 12vh;
+
+    background-color: aqua;
+
+    border: solid;
+    border-radius: 9%;
+    border-width: 1px;
+    border-color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-size: 5vh;
+    margin: 1vh;
+
+}
+
+.presetscorebuttonop{
+    width: 12vh;
+    height: 12vh;
+
+    background-color:cadetblue;
+
+    border: solid;
+    border-radius: 9%;
+    border-width: 1px;
+    border-color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-size: 5vh;
+    margin: 1vh;
+
+}
+
+.keyboardwrapper{
+    width: 48vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#resetbutton{
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: red;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    margin: 3vh;
+    padding: 1vh;
+
+}
