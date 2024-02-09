@@ -9,6 +9,14 @@ body {
     font-family: 'Lato'
 }
 
+h1{
+    font-size: 7vh;
+}
+
+h2{
+    font-size: 5vh;
+}
+
 #twocoldivider {
     display: flex;
 
@@ -92,4 +100,8 @@ body {
     margin-top: 6vh;
     padding: 1vh;
 
+}
+
+#deactivated{
+    background-color: azure;
 }
