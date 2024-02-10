@@ -21,8 +21,11 @@ let rtotal = 0;
 let ltotal = 0;
 
 
-// OTHER vARIABLES
 
+// GRAPH VARIABLES
+const ctx = document.getElementById('diffchart').getContext('2d');
+
+let historicdiffs = [];
 
 // START OF STATE CONTROL FUNCTIONS
 
@@ -88,6 +91,9 @@ function updatescreen(){
     if (ractive === lactive){ 
         pointsdifference = rtotal - ltotal; // Calculates points difference
 
+        historicdiffs.push(pointsdifference); // Adds the difference to the historic
+        diffchart.update(); // Updates the chart with the new data
+
         pointsdifferencelabel.innerHTML = pointsdifference; // Edits points difference
 
         activate(rkeyboard); // Activates keyboards back
@@ -114,5 +120,33 @@ function updatecolor(){ // This function changes the color of the difference ban
 }
 
 // END OF DATA MODIFYING FUNCTIONS
+
+
+// START OF CHART CONTROL
+
+const diffchart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+        datasets: [{
+            label: 'Tirades',
+            data: historicdiffs,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 2,
+            fill: true
+        }]
+    },
+    options: {
+        animation: false, // Deactivate animation
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        responsive: false
+    }
+});
+
+// END OF CHART CONTROL
 
 updatescreen();
