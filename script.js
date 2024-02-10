@@ -9,6 +9,7 @@ let lactive = true;
 // BANNER RELATED VARIABLES
 
 const pointsdifferencelabel = document.getElementById('pointsdifferencelabel');
+const pointsdifferencecolor = document.getElementById('color')
 
 const rtotallabel = document.getElementById("rtotallabel");
 const ltotallabel = document.getElementById("ltotallabel");
@@ -72,7 +73,7 @@ function lclick(key){
 
 
 
-// START OF SCREEN MODIFYING FUNCTIONS
+// START OF DATA MODIFYING FUNCTIONS
 
 function updatescreen(){
     rtotallabel.innerHTML = rtotal; // Update the content of the label to match the new score
@@ -91,10 +92,27 @@ function updatescreen(){
 
         activate(rkeyboard); // Activates keyboards back
         activate(lkeyboard);
+
+        updatecolor();
     }
 
 }
 
-// END OF SCREEN MODIFYING FUNCTIONS
+function updatecolor(){ // This function changes the color of the difference banner
+    if (pointsdifference > 0){ // Diff is greater than 0
+        pointsdifferencecolor.removeAttribute("class", "negative");
+        pointsdifferencecolor.setAttribute("class", "positive");
+    }
+    else if (pointsdifference < 0){ // Diff is smaller than 0
+        pointsdifferencecolor.removeAttribute("class", "positive");
+        pointsdifferencecolor.setAttribute("class", "negative");
+    }
+    else{ // Diff is 0
+        pointsdifferencecolor.removeAttribute("class", "positive");
+        pointsdifferencecolor.removeAttribute("class", "negative");
+    }
+}
+
+// END OF DATA MODIFYING FUNCTIONS
 
 updatescreen();

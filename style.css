@@ -17,6 +17,14 @@ h2{
     font-size: 5vh;
 }
 
+.positive{
+    color: rgb(0, 123, 255);
+}
+
+.negative{
+    color: rgb(255, 19, 19);
+}
+
 #twocoldivider {
     display: flex;
 
