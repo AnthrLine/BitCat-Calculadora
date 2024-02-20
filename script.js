@@ -20,12 +20,19 @@ let pointsdifference = 0;
 let rtotal = 0;
 let ltotal = 0;
 
-
-
 // GRAPH VARIABLES
 const ctx = document.getElementById('diffchart').getContext('2d');
 
 let historicdiffs = [];
+
+// DATA SAVING VARIABLES
+
+let saveJSON = {
+    rtotal: 0,
+    ltotal: 0,
+    pointsdifference: 0,
+    historicdiffs: []
+}
 
 // START OF STATE CONTROL FUNCTIONS
 
@@ -60,6 +67,7 @@ function rclick(key){
 
         deactivate(rkeyboard);
         updatescreen();
+        savestate();
     }
 }
 
@@ -69,6 +77,7 @@ function lclick(key){
         
         deactivate(lkeyboard);
         updatescreen();
+        savestate();
     }
 }
 
@@ -91,7 +100,9 @@ function updatescreen(){
     if (ractive === lactive){ 
         pointsdifference = rtotal - ltotal; // Calculates points difference
 
-        historicdiffs.push(pointsdifference); // Adds the difference to the historic
+        historicdiffs.push(Number(pointsdifference)); // Adds the difference to the historic
+
+
         diffchart.update(); // Updates the chart with the new data
 
         pointsdifferencelabel.innerHTML = pointsdifference; // Edits points difference
@@ -101,6 +112,8 @@ function updatescreen(){
 
         updatecolor();
     }
+
+    diffchart.update();
 
 }
 
@@ -149,4 +162,51 @@ const diffchart = new Chart(ctx, {
 
 // END OF CHART CONTROL
 
-updatescreen();
+// START OF LOCALSTORAGE CONTROL FUNCTIONS
+
+function checksave(){ // Check if there is a save, if there is, the function applies it.
+    storedcontents = localStorage.getItem("save");
+
+    if (storedcontents != null){
+
+        storedcontents = JSON.parse(storedcontents); // Converting the JSON to an object
+
+        // Set variables with previous values
+        pointsdifference = storedcontents.pointsdifference;
+        rtotal = storedcontents.rtotal;
+        ltotal = storedcontents.ltotal;
+
+        for (let i = 0; i < storedcontents.historicdiffs.length - 1; i++) {
+            historicdiffs.push(storedcontents.historicdiffs[i]);
+        }
+
+        updatescreen(); // Updates the screen with the new data
+
+    }
+    else{
+        updatescreen();
+    }
+}
+
+function savestate(){
+
+    // Saving all the data to an object
+    saveJSON.rtotal = rtotal;
+    saveJSON.ltotal = ltotal;
+    saveJSON.pointsdifference = pointsdifference;
+    saveJSON.historicdiffs = historicdiffs;
+
+    localStorage.setItem("save", JSON.stringify(saveJSON)); // Converting the object to a JSON and saving to localstorage
+
+}
+
+function erasecontents(){
+    localStorage.clear();
+
+    location.reload();
+}
+
+// END OF LOCALSTORAGE CONTROL FUNCTIONS
+
+diffchart.update();
+checksave();
