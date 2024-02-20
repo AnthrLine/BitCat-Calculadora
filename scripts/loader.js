@@ -1,4 +1,4 @@
-const queryString = window.location.search;
+const queryString = decodeURIComponent(window.location.search);
 // Get save from link
 const urlParams = new URLSearchParams(queryString);
 const save = urlParams.get('save')

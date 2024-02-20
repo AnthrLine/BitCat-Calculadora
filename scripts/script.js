@@ -294,7 +294,7 @@ function sharelink(){
     host = "punts.anthr.net";
    }
 
-   linktocopy = host + "/loading.html" + "?save=" + JSON.stringify(saveJSON);
+   linktocopy = encodeURI(host + "/loading.html" + "?save=" + encodeURIComponent(JSON.stringify(saveJSON)));
 
    prompt("Copia el següent enllaç:", linktocopy)
 
