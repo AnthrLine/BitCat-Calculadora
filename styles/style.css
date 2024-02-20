@@ -101,6 +101,23 @@ h2{
     height: 16vh;
 }
 
+#sharebutton{
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: blue;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    margin: 3vh;
+    margin-top: 6vh;
+    padding: 1vh;
+    width: 95vw;
+}
+
 #resetbutton{
     border: solid;
     border-radius: 10px;
@@ -115,7 +132,7 @@ h2{
     margin: 3vh;
     margin-top: 6vh;
     padding: 1vh;
-
+    width: 95vw;
 }
 
 #deactivated{

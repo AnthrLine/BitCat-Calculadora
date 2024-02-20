@@ -34,6 +34,11 @@ let saveJSON = {
     historicdiffs: []
 }
 
+// SHARING VARIABLES
+
+let host = "";
+let linktocopy = "";
+
 // START OF STATE CONTROL FUNCTIONS
 
 // This functions disables the buttons and applies a spcial style
@@ -207,6 +212,24 @@ function erasecontents(){
 }
 
 // END OF LOCALSTORAGE CONTROL FUNCTIONS
+
+// START OF SHARING CONTOL FUNCTION
+
+function sharelink(){
+   host = window.localStorage.host;
+
+   if (host === undefined) {
+    alert("El vostre host és undefined, utilitzaré punts.anthr.net");
+    host = "punts.anthr.net";
+   }
+
+   linktocopy = host + "/loading.html" + "?save=" + JSON.stringify(saveJSON);
+
+   prompt("Copia el següent enllaç:", linktocopy)
+
+}
+
+// END OF SHARING CONTOL FUNCTION
 
 diffchart.update();
 checksave();
