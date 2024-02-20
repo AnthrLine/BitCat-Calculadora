@@ -216,7 +216,7 @@ function erasecontents(){
 // START OF SHARING CONTOL FUNCTION
 
 function sharelink(){
-   host = window.localStorage.host;
+   host = window.location.hostname;
 
    if (host === undefined) {
     alert("El vostre host és undefined, utilitzaré punts.anthr.net");
