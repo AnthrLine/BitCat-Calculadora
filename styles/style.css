@@ -20,6 +20,16 @@ h2{
     font-size: 5vh;
 }
 
+h3{
+    font-size: 3vh;
+}
+
+.totallabelwrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
 .positive{
     color: rgb(0, 123, 255);
 }
@@ -49,7 +59,7 @@ h2{
     width: 8vh;
     height: 8vh;
 
-    background-color: aqua;
+    background-color: rgb(0, 255, 255);
 
     border: solid;
     border-radius: 9%;
@@ -70,7 +80,7 @@ h2{
     width: 8vh;
     height: 8vh;
 
-    background-color:cadetblue;
+    background-color:rgb(95, 158, 160);
 
     border: solid;
     border-radius: 9%;

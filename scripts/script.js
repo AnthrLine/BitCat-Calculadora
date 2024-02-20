@@ -6,6 +6,15 @@ const lkeyboard = document.getElementsByClassName("presetscorebuttonop");
 let ractive = true;
 let lactive = true;
 
+// MATH VARIABLES
+
+let currentthrow = -1;
+let totalthrows = 36;
+
+let relativethrows = 1;
+
+let calcmeans = true;
+
 // BANNER RELATED VARIABLES
 
 const pointsdifferencelabel = document.getElementById('pointsdifferencelabel');
@@ -14,16 +23,24 @@ const pointsdifferencecolor = document.getElementById('color')
 const rtotallabel = document.getElementById("rtotallabel");
 const ltotallabel = document.getElementById("ltotallabel");
 
+const rmeanlabel = document.getElementById("rmeanlabel");
+const lmeanlabel = document.getElementById("lmeanlabel");
+
 
 let pointsdifference = 0;
 
 let rtotal = 0;
 let ltotal = 0;
 
+let rmean = 0;
+let lmean = 0;
+
 // GRAPH VARIABLES
 const ctx = document.getElementById('diffchart').getContext('2d');
 
 let historicdiffs = [];
+let historicrmeans = [];
+let historiclmeans = [];
 
 // DATA SAVING VARIABLES
 
@@ -31,7 +48,12 @@ let saveJSON = {
     rtotal: 0,
     ltotal: 0,
     pointsdifference: 0,
-    historicdiffs: []
+    historicdiffs: [],
+    currentthrow: 0,
+    rmean: 0,
+    lmean: 0,
+    historicrmeans: [],
+    historiclmeans: []
 }
 
 // SHARING VARIABLES
@@ -71,7 +93,7 @@ function rclick(key){
         rtotal += key;
 
         deactivate(rkeyboard);
-        updatescreen();
+        updatescreen(true);
         savestate();
     }
 }
@@ -81,7 +103,7 @@ function lclick(key){
         ltotal += key;
         
         deactivate(lkeyboard);
-        updatescreen();
+        updatescreen(true);
         savestate();
     }
 }
@@ -92,7 +114,7 @@ function lclick(key){
 
 // START OF DATA MODIFYING FUNCTIONS
 
-function updatescreen(){
+function updatescreen(calcmeans){
     rtotallabel.innerHTML = rtotal; // Update the content of the label to match the new score
     ltotallabel.innerHTML = ltotal; // Update the content of the label to match the new score
 
@@ -103,10 +125,29 @@ function updatescreen(){
     // When reached this point, ractive and lactive can only be the
     // same if both are deactivated.
     if (ractive === lactive){ 
+        if (calcmeans === true){
+            currentthrow++ // A full throw has been completed, add number to the current throw
+
+            relativethrows = currentthrow/totalthrows; // Calc the relative throws
+
+            // Calculate the means
+            rmean = (rtotal/relativethrows).toFixed(2);
+            lmean = (ltotal/relativethrows).toFixed(2);
+
+            // If is the start of the match set the means to 0
+            if (String(rmean) == "NaN") {
+                rmean = 0;
+                lmean = 0;
+            }
+            historicrmeans.push(rmean/10);
+            historiclmeans.push(lmean/10);
+        }
+        rmeanlabel.innerHTML = rmean; // Update the content of the label to match the new mean
+        lmeanlabel.innerHTML = lmean; // Update the content of the label to match the new mean
+
         pointsdifference = rtotal - ltotal; // Calculates points difference
 
         historicdiffs.push(Number(pointsdifference)); // Adds the difference to the historic
-
 
         diffchart.update(); // Updates the chart with the new data
 
@@ -147,11 +188,25 @@ const diffchart = new Chart(ctx, {
     data: {
         labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
         datasets: [{
-            label: 'Tirades',
+            label: 'Diferència',
             data: historicdiffs,
             borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 2,
+            borderWidth: 3,
             fill: true
+        },
+        {
+            label: 'Mitjana (·10^-1)',
+            data: historicrmeans,
+            borderColor: 'rgb(0, 255, 255)',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'Mitjana op. (·10^-1)',
+            data: historiclmeans,
+            borderColor: 'rgb(95, 158, 160)',
+            borderWidth: 1,
+            fill: false
         }]
     },
     options: {
@@ -180,16 +235,27 @@ function checksave(){ // Check if there is a save, if there is, the function app
         pointsdifference = storedcontents.pointsdifference;
         rtotal = storedcontents.rtotal;
         ltotal = storedcontents.ltotal;
+        currentthrow = storedcontents.currentthrow;
+        rmean = storedcontents.rmean;
+        lmean = storedcontents.lmean;
 
         for (let i = 0; i < storedcontents.historicdiffs.length - 1; i++) {
             historicdiffs.push(storedcontents.historicdiffs[i]);
         }
 
-        updatescreen(); // Updates the screen with the new data
+        for (let i = 0; i < storedcontents.historicrmeans.length; i++) {
+            historicrmeans.push(storedcontents.historicrmeans[i]);
+        }
+
+        for (let i = 0; i < storedcontents.historiclmeans.length; i++) {
+            historiclmeans.push(storedcontents.historiclmeans[i]);
+        }
+
+        updatescreen(false); // Updates the screen with the new data
 
     }
     else{
-        updatescreen();
+        updatescreen(true);
     }
 }
 
@@ -200,6 +266,11 @@ function savestate(){
     saveJSON.ltotal = ltotal;
     saveJSON.pointsdifference = pointsdifference;
     saveJSON.historicdiffs = historicdiffs;
+    saveJSON.currentthrow = currentthrow;
+    saveJSON.rmean = rmean;
+    saveJSON.lmean = lmean;
+    saveJSON.historicrmeans = historicrmeans;
+    saveJSON.historiclmeans = historiclmeans;
 
     localStorage.setItem("save", JSON.stringify(saveJSON)); // Converting the object to a JSON and saving to localstorage
 
