@@ -59,7 +59,7 @@ let saveJSON = {
 // SHARING VARIABLES
 
 let host = "";
-let linktocopy = "";
+let linktoshorten = "";
 
 // START OF STATE CONTROL FUNCTIONS
 
@@ -294,10 +294,18 @@ function sharelink(){
     host = "punts.anthr.net";
    }
 
-   linktocopy = encodeURI(host + "/loading.html" + "?save=" + encodeURIComponent(JSON.stringify(saveJSON)));
+   linktoshorten = encodeURI("punts.anthr.net" + "/loading.html" + "?save=" + encodeURIComponent(JSON.stringify(saveJSON)));
 
-   prompt("Copia el següent enllaç:", linktocopy)
+   prompt("Copia el següent enllaç:", linktoshorten)
 
+   shortenUrl(linktoshorten)
+
+}
+
+function shortenUrl(url) {
+    fetch(url)
+    .then(res => res.text())
+    .then(body => console.log(body));
 }
 
 // END OF SHARING CONTOL FUNCTION
