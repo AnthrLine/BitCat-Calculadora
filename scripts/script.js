@@ -309,12 +309,16 @@ async function sharelink(){
         await sleep(50);
         n++
     }
-
-    prompt("Copia el següent enllaç:", shortenedurl);
+    if (n === 20){
+        prompt("Copia el següent enllaç:", linktoshorten);
+    }
+    else{
+        prompt("Copia el següent enllaç:", shortenedurl);
+    }
 }
 
 async function shortenurl() {
-    url = "http://tinyurl.com/api-create.php?url=" + linktoshorten;
+    url = "https://tinyurl.com/api-create.php?url=" + linktoshorten;
     let response = await fetch(url);
     let shortenedurl = await response.text();
 
