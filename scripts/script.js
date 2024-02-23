@@ -60,6 +60,7 @@ let saveJSON = {
 
 let host = "";
 let linktoshorten = "";
+let shortenedurl = "";
 
 // START OF STATE CONTROL FUNCTIONS
 
@@ -286,26 +287,38 @@ function erasecontents(){
 
 // START OF SHARING CONTOL FUNCTION
 
-function sharelink(){
-   host = window.location.hostname;
-
-   if (host === undefined) {
-    alert("El vostre host és undefined, utilitzaré punts.anthr.net");
-    host = "punts.anthr.net";
-   }
-
-   linktoshorten = encodeURI("punts.anthr.net" + "/loading.html" + "?save=" + encodeURIComponent(JSON.stringify(saveJSON)));
-
-   prompt("Copia el següent enllaç:", linktoshorten)
-
-   shortenUrl(linktoshorten)
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function shortenUrl(url) {
-    fetch(url)
-    .then(res => res.text())
-    .then(body => console.log(body));
+async function sharelink(){
+    host = window.location.hostname;
+
+    if (host === undefined) {
+        alert("El vostre host és undefined, utilitzaré punts.anthr.net");
+        host = "punts.anthr.net";
+    }
+
+    linktoshorten = encodeURI("punts.anthr.net" + "/loading.html" + "?save=" + encodeURIComponent(JSON.stringify(saveJSON)));
+
+    shortenurl().then(text => shortenedurl = text);
+
+    let n = 0
+
+    while (shortenedurl == "" && n < 20){
+        await sleep(50);
+        n++
+    }
+
+    prompt("Copia el següent enllaç:", shortenedurl);
+}
+
+async function shortenurl() {
+    url = "http://tinyurl.com/api-create.php?url=" + linktoshorten;
+    let response = await fetch(url);
+    let shortenedurl = await response.text();
+
+    return(shortenedurl);
 }
 
 // END OF SHARING CONTOL FUNCTION
