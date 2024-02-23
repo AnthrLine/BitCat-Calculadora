@@ -299,7 +299,7 @@ async function sharelink(){
         host = "punts.anthr.net";
     }
 
-    linktoshorten = encodeURI("punts.anthr.net" + "/loading.html" + "?save=" + encodeURIComponent(JSON.stringify(saveJSON)));
+    linktoshorten = encodeURI(host + "/loading.html" + "?save=" + encodeURIComponent(JSON.stringify(saveJSON)));
 
     shortenurl().then(text => shortenedurl = text);
 
