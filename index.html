@@ -13,6 +13,32 @@
     <script defer src="scripts/script.js"></script>
 </head>
 <body>
+    <div class="hidden" id="settingsscreen">
+
+        <h2 class="settingstext">Configuració</h2>
+
+        <p>
+            Jugadors:
+        </p>
+
+        <input class="settingsinput" type="number" id="players" placeholder="4" />
+
+        <p>
+            Rondes:
+        </p>
+
+        <input class="settingsinput" type="number" id="rounds" placeholder="3" />
+
+        <button onclick="updatesettings()">Desa</button>
+
+    </div>
+
+    <div onclick="opensettings()" id="settingsbutton">
+        <span class="material-symbols-outlined">
+            settings
+        </span>
+    </div>
+
     <div class="hidden" id="installbutton">
         <span class="material-symbols-outlined">
             download
@@ -20,6 +46,7 @@
 
         Instal·lar
     </div>
+
     <h1 id="color">
         <b id="pointsdifferencelabel">
             0

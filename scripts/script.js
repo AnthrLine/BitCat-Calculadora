@@ -66,6 +66,17 @@ let shortenedurl = "";
 let installprompt = null;
 const installbutton = document.getElementById("installbutton");
 
+// SETTINGS VARIABLES
+const settingsscreen = document.getElementById("settingsscreen");
+
+const playersinput = document.getElementById("players");
+const roundsinput = document.getElementById("rounds");
+
+let players = 4;
+let rounds = 3;
+
+let labels = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+
 // START OF STATE CONTROL FUNCTIONS
 
 // This functions disables the buttons and applies a spcial style
@@ -191,7 +202,7 @@ function updatecolor(){ // This function changes the color of the difference ban
 const diffchart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+        labels: labels,
         datasets: [{
             label: 'Diferència',
             data: historicdiffs,
@@ -331,7 +342,7 @@ async function shortenurl() {
 
 // END OF SHARING CONTOL FUNCTION
 
-// START OFINSTALLER CONTROLLER
+// START OF INSTALLER CONTROLLER
 
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
@@ -357,6 +368,32 @@ installbutton.addEventListener("click", async () => {
   }
 
 // END OF INSTALLER CONTROLLER
+
+// START OF SETTINGS FUNCTIONS
+
+function opensettings(){
+    settingsscreen.classList.remove("hidden");
+}
+
+function updatesettings(){
+    settingsscreen.classList.add("hidden");
+
+    players = playersinput.value;
+    rounds = roundsinput.value;
+
+    totalthrows = players*rounds*3;
+
+    labels = [''];
+
+    for (let i=0; i<totalthrows; i++){
+        labels.push('');
+    }
+
+    diffchart.data.labels = labels;
+    diffchart.update();
+}
+
+// END OF SETTINGS FUNCTIONS
 
 diffchart.update();
 checksave();

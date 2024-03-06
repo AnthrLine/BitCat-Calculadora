@@ -9,7 +9,9 @@ body {
     justify-items: center;
     align-content: center;
 
-    font-family: 'Lato'
+    font-family: 'Lato';
+
+    background-color: white;
 }
 
 h1{
@@ -24,9 +26,61 @@ h3{
     font-size: 3vh;
 }
 
+button{
+    font-family: 'Lato';
+    background-color: white;
+    border: solid;
+    border-radius: 9%;
+    border-color: black;
+    border-width: 1px;
+    font-size: 3vh;
+
+    margin: 5vh;
+}
+
 .hidden{
     color: white !important;
-    z-index: -99;
+    z-index: -99 !important;
+    border-color: white !important;
+    top: -100vh !important;
+    left: -100vw !important;
+}
+
+#settingsscreen{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    top: 0px;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settingstext{
+    z-index: 3;
+}
+
+.settingsinput{
+    width: 8vw;
+    height: 9vh;
+
+    font-family: 'Lato';
+    font-size: 7vh;
+}
+
+#settingsbutton{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+
+    left: 10px;
+    top: 8vh;
+
+    font-size: 3vh;
+    color: darkgray;
 }
 
 #installbutton{
