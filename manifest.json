@@ -6,8 +6,8 @@
 "description": "Calculadora de punts a temps real per a les bitlles catalanes.",
 "lang": "ca",
 "dir": "auto",
-"theme_color": "#000000",
-"background_color": "#000000",
+"theme_color": "#ffffff",
+"background_color": "#ffffff",
 "orientation": "portrait",
 "icons": [
     {

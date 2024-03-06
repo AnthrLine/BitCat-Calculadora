@@ -62,6 +62,10 @@ let host = "";
 let linktoshorten = "";
 let shortenedurl = "";
 
+// INSTALLER VARIABLES
+let installprompt = null;
+const installbutton = document.getElementById("installbutton");
+
 // START OF STATE CONTROL FUNCTIONS
 
 // This functions disables the buttons and applies a spcial style
@@ -326,6 +330,33 @@ async function shortenurl() {
 }
 
 // END OF SHARING CONTOL FUNCTION
+
+// START OFINSTALLER CONTROLLER
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installprompt = event;
+  installbutton.classList.remove("hidden");
+});
+
+installbutton.addEventListener("click", async () => {
+    if (!installprompt) {
+      return;
+    }
+    const result = await installprompt.prompt();
+    disableinstallprompt();
+  });
+  
+  window.addEventListener("appinstalled", () => {
+    disableinstallprompt();
+  });
+
+  function disableinstallprompt() {
+    installprompt = null;
+    installbutton.classList.add("hidden");
+  }
+
+// END OF INSTALLER CONTROLLER
 
 diffchart.update();
 checksave();

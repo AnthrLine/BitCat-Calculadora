@@ -24,6 +24,23 @@ h3{
     font-size: 3vh;
 }
 
+.hidden{
+    color: white !important;
+    z-index: -99;
+}
+
+#installbutton{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+
+    right: 10px;
+    top: 8vh;
+
+    font-size: 3vh;
+    color: darkgray;
+}
+
 .totallabelwrapper{
     display: flex;
     flex-direction: row;
