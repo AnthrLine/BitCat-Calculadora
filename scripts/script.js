@@ -15,6 +15,14 @@ let relativethrows = 1;
 
 let calcmeans = true;
 
+let pastdiff;
+
+let pastrtotal;
+let pastltotal;
+
+let pastrmean;
+let pastlmean;
+
 // BANNER RELATED VARIABLES
 
 const pointsdifferencelabel = document.getElementById('pointsdifferencelabel');
@@ -57,7 +65,6 @@ let saveJSON = {
 }
 
 // SHARING VARIABLES
-
 let host = "";
 let linktoshorten = "";
 let shortenedurl = "";
@@ -71,6 +78,8 @@ const settingsscreen = document.getElementById("settingsscreen");
 
 const playersinput = document.getElementById("players");
 const roundsinput = document.getElementById("rounds");
+
+const undobutton = document.getElementById("undobutton");
 
 let players = 4;
 let rounds = 3;
@@ -106,6 +115,7 @@ function activate(keyboard){
 
 function rclick(key){
     if (ractive){
+        pastrtotal = rtotal;
         rtotal += key;
 
         deactivate(rkeyboard);
@@ -116,6 +126,7 @@ function rclick(key){
 
 function lclick(key){
     if (lactive){
+        pastltotal = ltotal;
         ltotal += key;
         
         deactivate(lkeyboard);
@@ -131,6 +142,7 @@ function lclick(key){
 // START OF DATA MODIFYING FUNCTIONS
 
 function updatescreen(calcmeans){
+    pastdiff = pointsdifference;
     rtotallabel.innerHTML = rtotal; // Update the content of the label to match the new score
     ltotallabel.innerHTML = ltotal; // Update the content of the label to match the new score
 
@@ -142,6 +154,11 @@ function updatescreen(calcmeans){
     // same if both are deactivated.
     if (ractive === lactive){ 
         if (calcmeans === true){
+            pastrmean = rmean;
+            pastlmean = lmean;
+
+            undobutton.classList.remove("hidden");
+
             currentthrow++ // A full throw has been completed, add number to the current throw
 
             relativethrows = currentthrow/totalthrows; // Calc the relative throws
@@ -395,5 +412,38 @@ function updatesettings(){
 
 // END OF SETTINGS FUNCTIONS
 
+// START OF UNDO FUNCTIONS
+
+function undo(){
+    historicdiffs.splice(-1,1);
+
+    historicrmeans.splice(-1,1);
+    historiclmeans.splice(-1,1);
+
+    pointsdifference = pastdiff;
+
+    rtotal = pastrtotal;
+    ltotal = pastltotal;
+
+    rmean = pastrmean;
+    lmean = pastlmean;
+
+    rmeanlabel.innerHTML = rmean; // Update the content of the label to match the past mean
+    lmeanlabel.innerHTML = lmean; // Update the content of the label to match the past mean
+
+    pointsdifferencelabel.innerHTML = pointsdifference;
+
+    rtotallabel.innerHTML = rtotal;
+    ltotallabel.innerHTML = ltotal;
+
+    undobutton.classList.add("hidden");
+
+    diffchart.update();
+}
+
+// END OF UNDO FUNCTIONS
+
 diffchart.update();
 checksave();
+
+undobutton.classList.add("hidden");
