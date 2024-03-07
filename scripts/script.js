@@ -415,6 +415,7 @@ function updatesettings(){
 // START OF UNDO FUNCTIONS
 
 function undo(){
+    currentthrow--;
     historicdiffs.splice(-1,1);
 
     historicrmeans.splice(-1,1);
