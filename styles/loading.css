@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+
+    font-family: 'Lato';
+    height: 100vh;
+
+    margin: 0px;
+}
+
+h1{
+    font-size: 7vh;
+    margin: 4vw;
+
+    text-align: center;
+}

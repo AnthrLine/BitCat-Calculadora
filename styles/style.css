@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+
+    font-family: 'Lato';
+
+    background-color: white;
+}
+
+h1{
+    font-size: 7vh;
+}
+
+h2{
+    font-size: 5vh;
+}
+
+#titlewrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+h3{
+    font-size: 3vh;
+}
+
+button{
+    font-family: 'Lato';
+    background-color: white;
+    border: solid;
+    border-radius: 9%;
+    border-color: black;
+    border-width: 1px;
+    font-size: 3vh;
+
+    margin: 5vh;
+}
+
+.hidden{
+    color: white !important;
+    z-index: -99 !important;
+    border-color: white !important;
+    top: -100vh !important;
+    left: -100vw !important;
+}
+
+#settingsscreen{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    top: 0px;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settingstext{
+    z-index: 3;
+}
+
+.settingsinput{
+    width: 16vw;
+    height: 9vh;
+
+    font-family: 'Lato';
+    font-size: 7vh;
+}
+
+#settingsbutton{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+
+    left: 10px;
+    top: 8vh;
+
+    font-size: 3vh;
+    color: darkgray;
+}
+
+#installbutton{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+
+    right: 10px;
+    top: 8vh;
+
+    font-size: 3vh;
+    color: darkgray;
+}
+
+.totallabelwrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.positive{
+    color: rgb(0, 123, 255);
+}
+
+.negative{
+    color: rgb(255, 19, 19);
+}
+
+#twocoldivider {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 97vw;
+}
+
+.col{
+    width: 48vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.presetscorebutton{
+    width: 8vh;
+    height: 8vh;
+
+    background-color: rgb(0, 255, 255);
+
+    border: solid;
+    border-radius: 9%;
+    border-width: 1px;
+    border-color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-size: 4vh;
+    margin: 1vh;
+
+}
+
+.presetscorebuttonop{
+    width: 8vh;
+    height: 8vh;
+
+    background-color:rgb(95, 158, 160);
+
+    border: solid;
+    border-radius: 9%;
+    border-width: 1px;
+    border-color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-size: 4vh;
+    margin: 1vh;
+
+}
+
+.keyboardwrapper{
+    width: 48vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#diffchart{
+    width: 95vw;
+    height: 16vh;
+}
+
+#sharebutton{
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: blue;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    margin: 3vh;
+    margin-top: 6vh;
+    padding: 1vh;
+    width: 95vw;
+}
+
+#resetbutton{
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: red;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    margin: 3vh;
+    margin-top: 6vh;
+    padding: 1vh;
+    width: 95vw;
+}
+
+#deactivated{
+    background-color: azure;
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador de punts</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>navigator.serviceWorker.register("scripts/pwabuilder-adv-sw.js")</script> 
+    <link rel="manifest" href="manifest.json" />
+    <script defer src="scripts/script.js"></script>
+</head>
+<body>
+    <div class="hidden" id="settingsscreen">
+
+        <h2 class="settingstext">Configuració</h2>
+
+        <p>
+            Jugadors:
+        </p>
+
+        <input class="settingsinput" type="number" id="players" placeholder="4" />
+
+        <p>
+            Rondes:
+        </p>
+
+        <input class="settingsinput" type="number" id="rounds" placeholder="3" />
+
+        <button onclick="updatesettings()">Desa</button>
+
+    </div>
+
+    <div id="settingsbutton">
+        <span onclick="opensettings()" class="material-symbols-outlined">
+            settings
+        </span>
+
+        <span id="undobutton" onclick="undo()" class="material-symbols-outlined">
+            undo
+        </span>
+    </div>
+
+    <div class="hidden" id="installbutton">
+        <span class="material-symbols-outlined">
+            download
+        </span>
+
+        Instal·lar
+    </div>
+
+    <div class="" id="titlewrapper">
+        <h1 id="color">
+            <b id="pointsdifferencelabel">
+                0
+            </b>
+        </h1>
+        <h3 id="totalcolor">
+            <b id="totalpointsdifferencelabel">
+                (0)
+            </b>
+        </h3>
+    </div>
+    <div id="twocoldivider">
+        <div class="col">
+            
+            <div class="totallabelwrapper">
+                <h2 id="rtotallabel">50</h2>
+                <h3 id="rmeanlabel">33</h3>
+            </div>
+
+            <div class="keyboardwrapper">
+
+            <div class="presetscorebutton" onclick="rclick(0)">
+                0
+            </div>
+            <div class="presetscorebutton" onclick="rclick(1)">
+                1
+            </div>
+            <div class="presetscorebutton" onclick="rclick(2)">
+                2
+            </div>
+            <div class="presetscorebutton" onclick="rclick(3)">
+                3
+            </div>
+            <div class="presetscorebutton" onclick="rclick(4)">
+                4
+            </div>
+            <div class="presetscorebutton" onclick="rclick(6)">
+                6
+            </div>
+            <div class="presetscorebutton" onclick="rclick(10)">
+                10
+            </div>
+
+        </div>
+
+        </div>
+
+        <div class="col">
+            <div class="totallabelwrapper">
+                <h2 id="ltotallabel">50</h2>
+                <h3 id="lmeanlabel">33</h3>
+            </div>
+
+            <div class="keyboardwrapper">
+
+                <div class="presetscorebuttonop" onclick="lclick(0)">
+                    0
+                </div>
+                <div class="presetscorebuttonop" onclick="lclick(1)">
+                    1
+                </div>
+                <div class="presetscorebuttonop" onclick="lclick(2)">
+                    2
+                </div>
+                <div class="presetscorebuttonop" onclick="lclick(3)">
+                    3
+                </div>
+                <div class="presetscorebuttonop" onclick="lclick(4)">
+                    4
+                </div>
+                <div class="presetscorebuttonop" onclick="lclick(6)">
+                    6
+                </div>
+                <div class="presetscorebuttonop" onclick="lclick(10)">
+                    10
+                </div>
+    
+            </div>
+    
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <canvas id="diffchart"></canvas>
+    </div>
+            
+            <div onclick="sharelink();" id="sharebutton">COPIA L'ENLLAÇ PER COMPARTIR</div>
+            <div onclick="erasecontents();" id="resetbutton">REINICIA TOT I ESBORRA DADES LOCALS</div>
+</body>
+</html>
