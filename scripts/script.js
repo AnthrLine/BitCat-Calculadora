@@ -23,6 +23,11 @@ let pastltotal;
 let pastrmean;
 let pastlmean;
 
+let currentround;
+let currentplayer;
+let currentplayerthrow;
+let throwsperround;
+
 // BANNER RELATED VARIABLES
 
 const pointsdifferencelabel = document.getElementById('pointsdifferencelabel');
@@ -88,6 +93,9 @@ let players = 4;
 let rounds = 3;
 
 let labels = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+
+// INFOTABLE VARIABLES
+const currentthrowlabel = document.getElementById("currentthrowlabel")
 
 // START OF STATE CONTROL FUNCTIONS
 
@@ -163,6 +171,7 @@ function updatescreen(calcmeans){
             undobutton.classList.remove("hidden");
 
             currentthrow++ // A full throw has been completed, add number to the current throw
+            updatecurrentthrow(); // Update the current throw text
 
             relativethrows = currentthrow/totalthrows; // Calc the relative throws
 
@@ -300,6 +309,7 @@ function checksave(){ // Check if there is a save, if there is, the function app
         }
 
         updatescreen(false); // Updates the screen with the new data
+        updatecurrentthrow();
 
     }
     else{
@@ -458,6 +468,21 @@ function undo(){
 }
 
 // END OF UNDO FUNCTIONS
+
+// START OF CURRENTTHROW FUNCTIONS
+
+function updatecurrentthrow(){
+    throwsperround = 3 * players;
+    currentround = Math.trunc(currentthrow/throwsperround + 1)
+
+    currentplayerthrow = currentthrow % 3 + 1;
+
+    currentplayer = Math.floor(currentthrow / 3) % players + 1;
+
+    currentthrowlabel.innerHTML = `J:${currentplayer} T:${currentplayerthrow} R:${currentround} (${currentthrow + 1})`;
+}
+
+// END OF CURRENTTHROW FUNCTIONS
 
 diffchart.update();
 checksave();

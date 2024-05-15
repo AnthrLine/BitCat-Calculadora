@@ -183,9 +183,33 @@ button{
     flex-wrap: wrap;
 }
 
+.infofieldwrapper{
+    display: flex;
+    max-width: 100vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 5px;
+}
+
+.infofield{
+    position: relative;
+    scroll-snap-align: start;
+}
+
 #diffchart{
-    width: 95vw;
-    height: 16vh;
+    width: 100vw;
+    left: 0px;
+}
+
+.infotable{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    justify-content: center;
+    font-family: 'Lato';
 }
 
 #sharebutton{
